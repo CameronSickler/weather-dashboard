@@ -36,6 +36,7 @@ function getCurrentWeather(lat, lon) {
 
 function citySearchEventHandler(ev) {
     ev.preventDefault();
+    console.log(ev)
     getLocationData('chicago');
 
 }
