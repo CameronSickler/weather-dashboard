@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- link to css style sheet and bootstrap stylesheet here -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,8 @@
 </head>
 
 <body>
+
+    <!-- need to use bootstrap grid system to style browser elements after adding divs -->
 
     <header class="border">
         <h1 class="border">Weather Dashboard</h1>
@@ -62,8 +65,22 @@
 
     <!-- begin 5-day forecast area of browser -->
 
+    <div class="border">
+        <div class="border">
+            <h3 class="border">5-Day Forecast</h3>
+        </div>
+    </div>
 
+    <!-- need to have 5 elements to display the 5 days of forecast -->
+    <div class="row border">
+        <div class="border"></div>
+        <div class="border"></div>
+        <div class="border"></div>
+        <div class="border"></div>
+        <div class="border"></div>
+    </div>
 
+    <!-- script link to JS here -->
 
     <script src="script.js"></script>
 </body>
