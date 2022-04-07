@@ -14,72 +14,74 @@
 <body>
 
     <!-- need to use bootstrap grid system to style browser elements after adding divs -->
+    <div class="container-fluid">
 
-    <header class="border text-center">
-        <h1 class="border">Weather Dashboard</h1>
-    </header>
+        <header class="border text-center">
+            <h1 class="border">Weather Dashboard</h1>
+        </header>
 
-    <!-- begin city search area of browser -->
+        <!-- begin city search area of browser -->
 
-    <div class="container border">
+        <div class="container border">
 
-        <div class="row border">
+            <div class="row border">
 
-            <div class="col-lg-3 border">
+                <div class="col-lg-3 border">
 
-                <h1 class="border">
-                    Search for a City:
-                </h1>
-
-                <div class="border">
-                    <!-- need INPUT information here and will be self closing <input> -->
+                    <h1 class="border">
+                        Search for a City:
+                    </h1>
 
                     <div class="border">
-                        <!-- need BUTTON here to search for cities on click <button></button> -->
+                        <!-- need INPUT information here and will be self closing <input> -->
+
+                        <div class="border">
+                            <!-- need BUTTON here to search for cities on click <button></button> -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- begin weather results area of browser -->
+
+        <div class="col-lg-9 border">
+
+            <div class="border">
+                <div class="col-lg-9 border">
+                    <div class="card-body border">
+                        <h2 class="border">City Details</h2>
+                        <p id="temp" class="border"></p>
+                        <p id="wind" class="border"></p>
+                        <p id="humidity" class="border"></p>
+                        <p id="uvIndex" class="border"></p>
                     </div>
                 </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- begin weather results area of browser -->
-
-    <div class="col-lg-9 border">
-
-        <div class="border">
-            <div class="col-lg-9 border">
-                <div class="card-body border">
-                    <h2 class="border">City Details</h2>
-                    <p id="temp" class="border"></p>
-                    <p id="wind" class="border"></p>
-                    <p id="humidity" class="border"></p>
-                    <p id="uvIndex" class="border"></p>
-                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- begin 5-day forecast area of browser -->
+        <!-- begin 5-day forecast area of browser -->
 
-    <div class="border">
         <div class="border">
-            <h3 class="col-10 border">5-Day Forecast</h3>
+            <div class="border">
+                <h3 class="col-10 border">5-Day Forecast</h3>
+            </div>
         </div>
-    </div>
 
-    <!-- need to have 5 elements to display the 5 days of forecast -->
-    <div class="row border">
-        <div class="col-md-2 border"></div>
-        <div class="col-md-2 border"></div>
-        <div class="col-md-2 border"></div>
-        <div class="col-md-2 border"></div>
-        <div class="col-md-2 border"></div>
-    </div>
+        <!-- need to have 5 elements to display the 5 days of forecast -->
+        <div class="row border">
+            <div class="col-md-2 border"></div>
+            <div class="col-md-2 border"></div>
+            <div class="col-md-2 border"></div>
+            <div class="col-md-2 border"></div>
+            <div class="col-md-2 border"></div>
+        </div>
 
+    </div>
     <!-- script link to JS here -->
 
     <script src="script.js"></script>
