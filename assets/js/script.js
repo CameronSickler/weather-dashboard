@@ -1,6 +1,7 @@
 // global variables
 var key = '157060892b19157fb785accbd112cc57'
 var btnPrimaryEl = document.getElementById('search-btn');
+var inputEl = document.getElementById('enter-city');
 var tempEl = document.getElementById('temp');
 var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
@@ -32,10 +33,6 @@ function getCurrentWeather(lat, lon) {
         })
         .then(function (weatherData) {
             console.log(weatherData)
-            console.log(weatherData.current.temp)
-            console.log(weatherData.current.wind_speed)
-            console.log(weatherData.current.humidity)
-            console.log(weatherData.current.uvi)
             var tempInfo = weatherData.current.temp
             var windInfo = weatherData.current.wind_speed
             var humidityInfo = weatherData.current.humidity
@@ -60,7 +57,8 @@ function getCurrentWeather(lat, lon) {
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     console.log(ev)
-    getLocationData('milwaukee');
+    getLocationData(inputEl.value);
+    console.log(inputEl.value)
 
 }
 
