@@ -1,6 +1,10 @@
 // global variables
 var key = '157060892b19157fb785accbd112cc57'
 var btnPrimaryEl = document.getElementById('search-btn');
+var tempEl = document.getElementById('temp');
+var windEl = document.getElementById('wind');
+var humidityEl = document.getElementById('humidity');
+var unIndexEl = document.getElementById('uvIndex');
 
 
 //function to fetch API
@@ -17,6 +21,7 @@ function getLocationData(city) {
         .catch(function (err) {
             console.log(err)
         })
+
 }
 
 //function to get lat and lon data
