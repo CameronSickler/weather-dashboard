@@ -4,7 +4,7 @@ var btnPrimaryEl = document.getElementById('search-btn');
 var tempEl = document.getElementById('temp');
 var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
-var unIndexEl = document.getElementById('uvIndex');
+var uvIndexEl = document.getElementById('uvIndex');
 
 
 //function to fetch API
@@ -33,16 +33,34 @@ function getCurrentWeather(lat, lon) {
         .then(function (weatherData) {
             console.log(weatherData)
             console.log(weatherData.current.temp)
+            console.log(weatherData.current.wind_speed)
+            console.log(weatherData.current.humidity)
+            console.log(weatherData.current.uvi)
+            var tempInfo = weatherData.current.temp
+            var windInfo = weatherData.current.wind_speed
+            var humidityInfo = weatherData.current.humidity
+            var uviInfo = weatherData.current.uvi
+
+            tempEl.innerText = ("Temperature: " + tempInfo)
+            windEl.innerText = ("Wind: " + windInfo)
+            humidityEl.innerText = ("Humidity: " + humidityInfo)
+            uvIndexEl.innerText = ("UVIndex: " + uviInfo)
+
         })
         .catch(function (err) {
             console.log(err)
         })
+
+    //    will test appending elements to <p> ids with weather data here
+
+
+
 }
 
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     console.log(ev)
-    getLocationData('chicago');
+    getLocationData('milwaukee');
 
 }
 
