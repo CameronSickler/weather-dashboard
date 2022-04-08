@@ -62,17 +62,15 @@ function getCurrentWeather(lat, lon) {
 
             // add 5 day forecast elements here
 
-            //weatherData.daily[0].weather[0].description
-            //weatherData.daily[0].weather[0].icon
-            //weatherData.daily[0].temp.day
-            //weatherData.daily[0].humidity
-            //weatherData.daily[0].uvi
+            var forcastDescription = weatherData.daily[0].weather[0].description
+            var forcastIcon = weatherData.daily[0].weather[0].icon
+            var forcastTemp = weatherData.daily[0].temp.day
+            var forcastHumidy = weatherData.daily[0].humidity
+            var forcastUVI = weatherData.daily[0].uvi
 
-            console.log(weatherData.daily[0].weather[0].description)
-            console.log(weatherData.daily[0].weather[0].icon)
-            console.log(weatherData.daily[0].temp.day)
-            console.log(weatherData.daily[0].humidity)
-            console.log(weatherData.daily[0].uvi)
+            var li = document.createElement('li');
+            li.innerText = weatherData.daily[0].weather[0].description
+            day1El.appendChild(li)
 
         })
         .catch(function (err) {
