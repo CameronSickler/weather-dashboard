@@ -65,15 +65,22 @@ function getCurrentWeather(lat, lon) {
             var numberOfForecastDays = [day1, day2, day3, day4, day5]
             var index = 0;
 
+            //for loop to generate a li elements
             for (i = 0; i < numberOfForecastDays.length; i++) {
 
+                //variables that store forecast information from the API
                 var forecastDescription = weatherData.daily[index].weather[0].description
                 var forecastIcon = weatherData.daily[index].weather[0].icon
                 var forecastTemp = ("Temperature: " + weatherData.daily[index].temp.day + " *F")
                 var forecastHumidy = ("Humidity: " + weatherData.daily[index].humidity + " %")
                 var forecastUVI = ("UVIndex: " + weatherData.daily[index].uvi)
 
+                //var that is an array of forecast information vars
                 var fiveDayForecastInfo = [forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
+
+
+                //nested for loop to populate a created li from the parent for loop with 
+                //forecast information
 
                 for (j = 0; j < fiveDayForecastInfo.length; j++) {
 
@@ -91,8 +98,21 @@ function getCurrentWeather(lat, lon) {
 }
 
 
+function clearElements() {
+    day1El.innerHTML = ('')
+    day2El.innerHTML = ('')
+    day3El.innerHTML = ('')
+    day4El.innerHTML = ('')
+    day5El.innerHTML = ('')
+    tempEl.innerHTML = ('')
+    windEl.innerHTML = ('')
+    humidityEl.innerHTML = ('')
+    uvIndexEl.innerHTML = ('')
+}
+
 function citySearchEventHandler(ev) {
     ev.preventDefault();
+    clearElements();
     console.log(ev)
 
     // passes the input value of what is typed in for a city name as parameter
