@@ -6,16 +6,16 @@ var tempEl = document.getElementById('temp');
 var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
 var uvIndexEl = document.getElementById('uvIndex');
+var cityNameEl = document.getElementById('city-name');
 
 
-//function to fetch API
+//function to fetch API for the city by city name
 function getLocationData(city) {
     fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + key)
         .then(function (response) {
             return response.json()
         })
         .then(function (locationData) {
-            console.log(locationData)
             getCurrentWeather(locationData[0].lat, locationData[0].lon)
 
         })
@@ -25,14 +25,15 @@ function getLocationData(city) {
 
 }
 
-//function to get lat and lon data
+//function to get weather for location by latitude and longitude values
 function getCurrentWeather(lat, lon) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + key)
         .then(function (response) {
             return response.json()
         })
         .then(function (weatherData) {
-            console.log(weatherData)
+
+            //local variables to store weather data from API
             var tempInfo = weatherData.current.temp
             var windInfo = weatherData.current.wind_speed
             var humidityInfo = weatherData.current.humidity
@@ -48,9 +49,6 @@ function getCurrentWeather(lat, lon) {
         .catch(function (err) {
             console.log(err)
         })
-
-
-
 }
 
 function citySearchEventHandler(ev) {
@@ -59,6 +57,7 @@ function citySearchEventHandler(ev) {
 
     // passes the input value of what is typed in for a city name as parameter
     getLocationData(inputEl.value);
+    cityNameEl.innerText = ("City Details: " + inputEl.value)
     console.log(inputEl.value)
 
 }
