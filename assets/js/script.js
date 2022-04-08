@@ -39,19 +39,28 @@ function getCurrentWeather(lat, lon) {
             var tempInfo = weatherData.current.temp
             var windInfo = weatherData.current.wind_speed
             var humidityInfo = weatherData.current.humidity
-            var uviInfo = weatherData.current.uvi
+            var uvInfo = weatherData.current.uvi
 
             // add weather information to innerText areas of HTML
-            tempEl.innerText = ("Temperature: " + tempInfo)
-            windEl.innerText = ("Wind: " + windInfo)
-            humidityEl.innerText = ("Humidity: " + humidityInfo)
-            uvIndexEl.innerText = ("UVIndex: " + uviInfo)
+            tempEl.innerText = ("Temperature: " + tempInfo + " *F")
+            windEl.innerText = ("Wind: " + windInfo + " MPH")
+            humidityEl.innerText = ("Humidity: " + humidityInfo + " %")
+            uvIndexEl.innerText = ("UVIndex: " + uvInfo)
 
+            // if statement to set class for color change of uvIndex text
+            if (uvInfo <= 2) {
+                uvIndexEl.setAttribute("class", "favorable");
+            } else if (uvInfo >= 2 && uvInfo <= 5) {
+                uvIndexEl.setAttribute("class", "moderate");
+            } else if (uvInfo <= 5) {
+                uvIndexEl.setAttribute("class", "severe");
+            }
         })
         .catch(function (err) {
             console.log(err)
         })
 }
+
 
 function citySearchEventHandler(ev) {
     ev.preventDefault();
@@ -65,9 +74,7 @@ function citySearchEventHandler(ev) {
     // add date and time populate to event handler
 
     var today = new Date();
-
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
     cityNameEl.innerText = ("City Details: " + inputEl.value + "  " + today)
 }
 
