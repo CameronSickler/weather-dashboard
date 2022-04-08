@@ -33,6 +33,8 @@ function getCurrentWeather(lat, lon) {
         })
         .then(function (weatherData) {
 
+            console.log(weatherData)
+
             //local variables to store weather data from API
             var tempInfo = weatherData.current.temp
             var windInfo = weatherData.current.wind_speed
@@ -57,9 +59,16 @@ function citySearchEventHandler(ev) {
 
     // passes the input value of what is typed in for a city name as parameter
     getLocationData(inputEl.value);
-    cityNameEl.innerText = ("City Details: " + inputEl.value)
+
     console.log(inputEl.value)
 
+    // add date and time populate to event handler
+
+    var today = new Date();
+
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+    cityNameEl.innerText = ("City Details: " + inputEl.value + "  " + today)
 }
 
 btnPrimaryEl.addEventListener('click', citySearchEventHandler) 
