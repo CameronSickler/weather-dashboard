@@ -62,22 +62,28 @@ function getCurrentWeather(lat, lon) {
 
             // add 5 day forecast elements here
 
-            var i = 0;
-            var forecastDescription = weatherData.daily[i].weather[i].description
-            var forecastIcon = weatherData.daily[i].weather[i].icon
-            var forecastTemp = ("Temperature: " + weatherData.daily[i].temp.day + " *F")
-            var forecastHumidy = ("Humidity: " + weatherData.daily[i].humidity + " %")
-            var forecastUVI = ("UVIndex: " + weatherData.daily[i].uvi)
+            var numberOfForecastDays = [day1, day2, day3, day4, day5]
+            var index = 0;
 
-            var fiveDayForecast = ["Day1", forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
+            for (i = 0; i < numberOfForecastDays.length; i++) {
 
-            for (i = 0; i < fiveDayForecast.length; i++) {
+                var forecastDescription = weatherData.daily[index].weather[0].description
+                var forecastIcon = weatherData.daily[index].weather[0].icon
+                var forecastTemp = ("Temperature: " + weatherData.daily[index].temp.day + " *F")
+                var forecastHumidy = ("Humidity: " + weatherData.daily[index].humidity + " %")
+                var forecastUVI = ("UVIndex: " + weatherData.daily[index].uvi)
 
-                var li = document.createElement('li');
-                li.innerText = fiveDayForecast[i];
-                day1El.appendChild(li);
+                var fiveDayForecastInfo = [forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
+
+                for (j = 0; j < fiveDayForecastInfo.length; j++) {
+
+                    var li = document.createElement('li');
+                    li.innerText = fiveDayForecastInfo[j];
+                    numberOfForecastDays[i].appendChild(li);
+                }
+
+                index = index + 1
             }
-
         })
         .catch(function (err) {
             console.log(err)
