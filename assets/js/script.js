@@ -1,12 +1,25 @@
+//Notes to fellow Developer - Hello! My name is Cameron and thank you 
+//for taking a look at my code! I hope you enjoy it :)
+//Something to note here is that the getCurrentWeather function 
+//contains a nested for loop that uses local variables to dynamically create
+//elements and append them to the HTML using ID names.
+
 // global variables
 var key = '157060892b19157fb785accbd112cc57'
 var btnPrimaryEl = document.getElementById('search-btn');
 var inputEl = document.getElementById('enter-city');
+
+//variables used for dynamically creating elements that display
+//city details and weather information
+var cityNameEl = document.getElementById('city-name');
 var tempEl = document.getElementById('temp');
 var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
 var uvIndexEl = document.getElementById('uvIndex');
-var cityNameEl = document.getElementById('city-name');
+
+
+//variables used for dynamically creating elements that
+//display 5 day forecast forecast elements
 var day1El = document.getElementById('day1');
 var day2El = document.getElementById('day2');
 var day3El = document.getElementById('day3');
@@ -97,7 +110,7 @@ function getCurrentWeather(lat, lon) {
         })
 }
 
-
+//function to clear elements
 function clearElements() {
     day1El.innerHTML = ('')
     day2El.innerHTML = ('')
@@ -110,6 +123,7 @@ function clearElements() {
     uvIndexEl.innerHTML = ('')
 }
 
+//function to handle event listener click
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     clearElements();
@@ -127,4 +141,5 @@ function citySearchEventHandler(ev) {
     cityNameEl.innerText = ("City Details: " + inputEl.value + "  " + today)
 }
 
+//eventlistener for searching city name on button click
 btnPrimaryEl.addEventListener('click', citySearchEventHandler) 
