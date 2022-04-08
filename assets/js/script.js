@@ -65,13 +65,14 @@ function getCurrentWeather(lat, lon) {
             var i = 0;
             var forecastDescription = weatherData.daily[i].weather[i].description
             var forecastIcon = weatherData.daily[i].weather[i].icon
-            var forecastTemp = weatherData.daily[i].temp.day
-            var forecastHumidy = weatherData.daily[i].humidity
-            var forecastUVI = weatherData.daily[i].uvi
+            var forecastTemp = ("Temperature: " + weatherData.daily[i].temp.day + " *F")
+            var forecastHumidy = ("Humidity: " + weatherData.daily[i].humidity + " %")
+            var forecastUVI = ("UVIndex: " + weatherData.daily[i].uvi)
 
-            var fiveDayForecast = [forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
+            var fiveDayForecast = ["Day1", forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
 
             for (i = 0; i < fiveDayForecast.length; i++) {
+
                 var li = document.createElement('li');
                 li.innerText = fiveDayForecast[i];
                 day1El.appendChild(li);
