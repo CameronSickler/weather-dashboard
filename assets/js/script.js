@@ -38,6 +38,7 @@ function getCurrentWeather(lat, lon) {
             var humidityInfo = weatherData.current.humidity
             var uviInfo = weatherData.current.uvi
 
+            // add weather information to innerText areas of HTML
             tempEl.innerText = ("Temperature: " + tempInfo)
             windEl.innerText = ("Wind: " + windInfo)
             humidityEl.innerText = ("Humidity: " + humidityInfo)
@@ -48,8 +49,6 @@ function getCurrentWeather(lat, lon) {
             console.log(err)
         })
 
-    //    will test appending elements to <p> ids with weather data here
-
 
 
 }
@@ -57,6 +56,8 @@ function getCurrentWeather(lat, lon) {
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     console.log(ev)
+
+    // passes the input value of what is typed in for a city name as parameter
     getLocationData(inputEl.value);
     console.log(inputEl.value)
 
