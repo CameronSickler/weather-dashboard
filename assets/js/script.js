@@ -7,6 +7,11 @@ var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
 var uvIndexEl = document.getElementById('uvIndex');
 var cityNameEl = document.getElementById('city-name');
+var day1El = document.getElementById('day1');
+var day2El = document.getElementById('day2');
+var day3El = document.getElementById('day3');
+var day4El = document.getElementById('day4');
+var day5El = document.getElementById('day5');
 
 
 //function to fetch API for the city by city name
@@ -17,7 +22,6 @@ function getLocationData(city) {
         })
         .then(function (locationData) {
             getCurrentWeather(locationData[0].lat, locationData[0].lon)
-
         })
         .catch(function (err) {
             console.log(err)
@@ -55,6 +59,21 @@ function getCurrentWeather(lat, lon) {
             } else if (uvInfo <= 5) {
                 uvIndexEl.setAttribute("class", "severe");
             }
+
+            // add 5 day forecast elements here
+
+            //weatherData.daily[0].weather[0].description
+            //weatherData.daily[0].weather[0].icon
+            //weatherData.daily[0].temp.day
+            //weatherData.daily[0].humidity
+            //weatherData.daily[0].uvi
+
+            console.log(weatherData.daily[0].weather[0].description)
+            console.log(weatherData.daily[0].weather[0].icon)
+            console.log(weatherData.daily[0].temp.day)
+            console.log(weatherData.daily[0].humidity)
+            console.log(weatherData.daily[0].uvi)
+
         })
         .catch(function (err) {
             console.log(err)
