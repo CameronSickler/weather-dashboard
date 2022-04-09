@@ -1,17 +1,17 @@
 /* helper styles */
 
-.border {
+/* .border {
     border: 3px solid green;
-}
+} */
 
 .favorable {
     background-color: lightgreen;
 }
 
 .moderate {
-    color: yellow;
+    background-color: yellow;
 }
 
 .severe {
-    color: red;
+    background-color: red;
 }
