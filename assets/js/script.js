@@ -19,6 +19,7 @@ var uvIndexEl = document.getElementById('uvIndex');
 var listContLiEl = document.getElementById('list-cont');
 
 
+
 //variables used for dynamically creating elements that
 //display 5 day forecast forecast elements
 var day1El = document.getElementById('day1');
@@ -128,7 +129,7 @@ function clearElements() {
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     clearElements();
-    createLiElement(inputEl.value);
+    createBtnElement(inputEl.value);
     console.log(ev)
 
     // passes the input value of what is typed in for a city name as parameter
@@ -142,17 +143,26 @@ function citySearchEventHandler(ev) {
     cityNameEl.innerText = ("City Details: " + inputEl.value + "  " + today)
 }
 
-function createLiElement() {
+function previousCitySearchEventHandler(ev) {
+    ev.preventDefault();
+    clearElements();
+    console.log(ev.srcElement.innerText)
+    var city = ev.srcElement.innerText
+    getLocationData(city);
+}
+
+function createBtnElement() {
     console.log(inputEl.value);
-    var createLi = document.createElement('li')
     localStorage.setItem('city', JSON.stringify(inputEl.value))
-    createLi.innerText = inputEl.value;
-    // createLi.setAttribute("id", "inputEl.value")
-    var createCitySearchBtn = document.createElement('button')
-    createCitySearchBtn.innerText = ('search city')
-    createCitySearchBtn.addEventListener('click', citySearchEventHandler)
-    listContLiEl.appendChild(createLi)
-    createLi.appendChild(createCitySearchBtn)
+
+    var createCitySearchBtn = document.createElement('button');
+    var createLiEl = document.createElement('li');
+
+    createLiEl.innerText = ''
+    createCitySearchBtn.innerText = (inputEl.value)
+    createCitySearchBtn.addEventListener('click', previousCitySearchEventHandler)
+    listContLiEl.appendChild(createLiEl)
+    createLiEl.appendChild(createCitySearchBtn)
 }
 
 //eventlistener for searching city name on button click
