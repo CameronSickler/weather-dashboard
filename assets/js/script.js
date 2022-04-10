@@ -29,7 +29,7 @@ var numberOfDays = [day1El, day2El, day3El, day4El, day5El]
 
 //function to fetch API for the city by city name
 function getLocationData(city) {
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + key)
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + key)
         .then(function (response) {
             return response.json()
         })
@@ -138,7 +138,6 @@ function getCurrentWeather(lat, lon) {
             console.log(err)
         })
 }
-
 
 //function to clear elements that would be displaying weather information and 5day
 // forecast information on the browser in the event the user searches more than once
