@@ -40,6 +40,7 @@ function getLocationData(city) {
 
 }
 
+//function for removing any relevant css class styles from previously dynamically created elements
 function clearUVIndexColor() {
     uvIndexEl.removeAttribute("class", "favorable");
     uvIndexEl.removeAttribute("class", "moderate");
@@ -81,8 +82,7 @@ function getCurrentWeather(lat, lon) {
 
             // add 5 day forecast logic begins here
 
-            //local variable for number of days in the forecast
-            // var numberOfForecastDays = [day1, day2, day3, day4, day5]
+            //local variable used for the for loop below
             var index = 0;
 
             //for loop to generate a single li element for each day of the forecast
@@ -92,15 +92,11 @@ function getCurrentWeather(lat, lon) {
                 // grilling down into the API
                 var forecastDescription = weatherData.daily[index].weather[0].description
                 var forecastIcon = weatherData.daily[index].weather[0].icon
-                //local variable to take icon id from API and prepare it for becoming an img src value
                 var forecastIconURL = "http://openweathermap.org/img/wn/" + forecastIcon + "@2x.png"
-
                 var forecastTemp = ("Temperature: " + weatherData.daily[index].temp.day + " *F")
                 var forecastHumidy = ("Humidity: " + weatherData.daily[index].humidity + " %")
                 var forecastUVI = ("UVIndex: " + weatherData.daily[index].uvi)
-
-                //local variable to save the weather information gathered from the API into an array
-                var fiveDayForecastInfo = [forecastDescription, forecastTemp, forecastHumidy, forecastUVI]
+                var fiveDayForecastInfo = [forecastDescription, forecastTemp, forecastHumidy]
 
                 //local variable create an img element, set the src to a unique weather icon, then append it to the 
                 //appropriate forecast day in the for loop. 
@@ -109,7 +105,6 @@ function getCurrentWeather(lat, lon) {
                 numberOfDays[i].appendChild(createIMG);
 
                 //nested for loop add information to the previously created li in the parent for loop.
-
                 for (j = 0; j < fiveDayForecastInfo.length; j++) {
 
                     var li = document.createElement('li');
@@ -117,9 +112,23 @@ function getCurrentWeather(lat, lon) {
                     numberOfDays[i].appendChild(li);
                 }
 
-                //incrementor so that after all relevant weather information is added to the li,
-                //the loop can progress to create another li element and add information to it
-                //until no more li elements are needed.
+                //create a li element to house UV index value
+                var createUVIndexLi = document.createElement('li');
+                createUVIndexLi.innerText = forecastUVI;
+
+                //add UV Index to the 5 day forecast element on the current day determined by the index incrementor,
+                // and use if statement to apply class styles for changing background color for UV Index
+                if (weatherData.daily[index].uvi < 2) {
+                    createUVIndexLi.setAttribute("class", "favorable");
+                } else if (weatherData.daily[index].uvi >= 2 && weatherData.daily[index].uvi <= 5) {
+                    createUVIndexLi.setAttribute("class", "moderate");
+                } else if (weatherData.daily[index].uvi > 5) {
+                    createUVIndexLi.setAttribute("class", "severe");
+                }
+
+                numberOfDays[i].appendChild(createUVIndexP);
+
+                //incrementor for the parent loop
                 index = index + 1
             }
         })
