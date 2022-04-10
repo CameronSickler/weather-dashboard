@@ -2,6 +2,10 @@
 //for taking a look at my code! I hope you enjoy it :)
 //Something to note, be sure to capitalize the city names for best search results,
 //not capitalizing proper nouns may result in the UV index value displaying as 0. 
+//another known issue that is under investigation is API access. I added a "s" to the "http"
+//found in the fetch call URL of getCurrentWeather function. I have no issues but when a viewer
+//accesses the application through my gitHub there may be authorization issues blocking the API
+//from delivering requested information.
 
 // global variables
 var key = '157060892b19157fb785accbd112cc57'
