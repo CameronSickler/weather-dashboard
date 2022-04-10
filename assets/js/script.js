@@ -23,6 +23,7 @@ var day3El = document.getElementById('day3');
 var day4El = document.getElementById('day4');
 var day5El = document.getElementById('day5');
 
+var numberOfDays = [day1El, day2El, day3El, day4El, day5El]
 
 //function to fetch API for the city by city name
 function getLocationData(city) {
@@ -37,6 +38,12 @@ function getLocationData(city) {
             console.log(err)
         })
 
+}
+
+function clearUVIndexColor() {
+    uvIndexEl.removeAttribute("class", "favorable");
+    uvIndexEl.removeAttribute("class", "moderate");
+    uvIndexEl.removeAttribute("class", "severe");
 }
 
 //function to get weather for location by latitude and longitude values
@@ -59,35 +66,47 @@ function getCurrentWeather(lat, lon) {
             humidityEl.innerText = ("Humidity: " + humidityInfo + " %")
             uvIndexEl.innerText = ("UVIndex: " + uvInfo)
 
+
             // if statement to set class for color change of uvIndex text
-            if (uvInfo <= 2) {
+            if (uvInfo < 2) {
+                clearUVIndexColor();
                 uvIndexEl.setAttribute("class", "favorable");
             } else if (uvInfo >= 2 && uvInfo <= 5) {
+                clearUVIndexColor();
                 uvIndexEl.setAttribute("class", "moderate");
-            } else if (uvInfo <= 5) {
+            } else if (uvInfo > 5) {
+                clearUVIndexColor();
                 uvIndexEl.setAttribute("class", "severe");
             }
 
             // add 5 day forecast logic begins here
 
             //local variable for number of days in the forecast
-            var numberOfForecastDays = [day1, day2, day3, day4, day5]
+            // var numberOfForecastDays = [day1, day2, day3, day4, day5]
             var index = 0;
 
             //for loop to generate a single li element for each day of the forecast
-            for (i = 0; i < numberOfForecastDays.length; i++) {
+            for (i = 0; i < numberOfDays.length; i++) {
 
                 //local variables that save the weather information values obtained by
                 // grilling down into the API
                 var forecastDescription = weatherData.daily[index].weather[0].description
                 var forecastIcon = weatherData.daily[index].weather[0].icon
+                //local variable to take icon id from API and prepare it for becoming an img src value
+                var forecastIconURL = "http://openweathermap.org/img/wn/" + forecastIcon + "@2x.png"
+
                 var forecastTemp = ("Temperature: " + weatherData.daily[index].temp.day + " *F")
                 var forecastHumidy = ("Humidity: " + weatherData.daily[index].humidity + " %")
                 var forecastUVI = ("UVIndex: " + weatherData.daily[index].uvi)
 
                 //local variable to save the weather information gathered from the API into an array
-                var fiveDayForecastInfo = [forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
+                var fiveDayForecastInfo = [forecastDescription, forecastTemp, forecastHumidy, forecastUVI]
 
+                //local variable create an img element, set the src to a unique weather icon, then append it to the 
+                //appropriate forecast day in the for loop. 
+                var createIMG = document.createElement('img');
+                createIMG.setAttribute("src", forecastIconURL);
+                numberOfDays[i].appendChild(createIMG);
 
                 //nested for loop add information to the previously created li in the parent for loop.
 
@@ -95,7 +114,7 @@ function getCurrentWeather(lat, lon) {
 
                     var li = document.createElement('li');
                     li.innerText = fiveDayForecastInfo[j];
-                    numberOfForecastDays[i].appendChild(li);
+                    numberOfDays[i].appendChild(li);
                 }
 
                 //incrementor so that after all relevant weather information is added to the li,
@@ -108,6 +127,7 @@ function getCurrentWeather(lat, lon) {
             console.log(err)
         })
 }
+
 
 //function to clear elements that would be displaying weather information and 5day
 // forecast information on the browser in the event the user searches more than once
