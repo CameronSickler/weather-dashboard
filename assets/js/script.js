@@ -1,8 +1,5 @@
 //Notes to fellow Developer - Hello! My name is Cameron and thank you 
 //for taking a look at my code! I hope you enjoy it :)
-//Something to note here is that the getCurrentWeather function 
-//contains a nested for loop that uses local variables to dynamically create
-//elements and append them to the HTML using ID names.
 
 // global variables
 var key = '157060892b19157fb785accbd112cc57'
@@ -17,8 +14,6 @@ var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
 var uvIndexEl = document.getElementById('uvIndex');
 var listContLiEl = document.getElementById('list-cont');
-
-
 
 //variables used for dynamically creating elements that
 //display 5 day forecast forecast elements
@@ -75,27 +70,28 @@ function getCurrentWeather(lat, lon) {
                 uvIndexEl.setAttribute("class", "severe");
             }
 
-            // add 5 day forecast elements here
+            // add 5 day forecast logic begins here
 
+            //local variable for number of days in the forecast
             var numberOfForecastDays = [day1, day2, day3, day4, day5]
             var index = 0;
 
-            //for loop to generate a li elements
+            //for loop to generate a single li element for each day of the forecast
             for (i = 0; i < numberOfForecastDays.length; i++) {
 
-                //variables that store forecast information from the API
+                //local variables that save the weather information values obtained by
+                // grilling down into the API
                 var forecastDescription = weatherData.daily[index].weather[0].description
                 var forecastIcon = weatherData.daily[index].weather[0].icon
                 var forecastTemp = ("Temperature: " + weatherData.daily[index].temp.day + " *F")
                 var forecastHumidy = ("Humidity: " + weatherData.daily[index].humidity + " %")
                 var forecastUVI = ("UVIndex: " + weatherData.daily[index].uvi)
 
-                //var that is an array of forecast information vars
+                //local variable to save the weather information gathered from the API into an array
                 var fiveDayForecastInfo = [forecastDescription, forecastIcon, forecastTemp, forecastHumidy, forecastUVI]
 
 
-                //nested for loop to populate a created li from the parent for loop with 
-                //forecast information
+                //nested for loop add information to the previously created li in the parent for loop.
 
                 for (j = 0; j < fiveDayForecastInfo.length; j++) {
 
@@ -104,6 +100,9 @@ function getCurrentWeather(lat, lon) {
                     numberOfForecastDays[i].appendChild(li);
                 }
 
+                //incrementor so that after all relevant weather information is added to the li,
+                //the loop can progress to create another li element and add information to it
+                //until no more li elements are needed.
                 index = index + 1
             }
         })
@@ -112,7 +111,9 @@ function getCurrentWeather(lat, lon) {
         })
 }
 
-//function to clear elements
+//function to clear elements that would be displaying weather information and 5day
+// forecast information on the browser in the event the user searches more than once
+// and/or re-searches previous cities.
 function clearElements() {
     day1El.innerHTML = ('')
     day2El.innerHTML = ('')
@@ -125,10 +126,11 @@ function clearElements() {
     uvIndexEl.innerHTML = ('')
 }
 
-//function to handle event listener click
+//function to handle event listener click on city search main input search button
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     clearElements();
+    //function call to create an li and btn element representing the previously searched city name
     createBtnElement(inputEl.value);
     console.log(ev)
 
@@ -143,21 +145,29 @@ function citySearchEventHandler(ev) {
     cityNameEl.innerText = ("City Details: " + inputEl.value + "  " + today)
 }
 
+// function to handle event listener click on previously searched city buttons. The
+//event listener for this is added to a button element when createBtnElement function is
+//called.
 function previousCitySearchEventHandler(ev) {
     ev.preventDefault();
     clearElements();
-    console.log(ev.srcElement.innerText)
+    //local variable that grills down to a string value of the city name that can be passed
+    //to getLocationData as the parameter to search again for the forecast details
     var city = ev.srcElement.innerText
     getLocationData(city);
 }
 
+//function to dynamically create elements which is called from within 
+// the previousCitySearchEventHandler function
 function createBtnElement() {
     console.log(inputEl.value);
     localStorage.setItem('city', JSON.stringify(inputEl.value))
 
+    //local variables that create button and li elements
     var createCitySearchBtn = document.createElement('button');
     var createLiEl = document.createElement('li');
 
+    //creates li and button elements, adds event listener to the btn and appends to the HTML
     createLiEl.innerText = ''
     createCitySearchBtn.innerText = (inputEl.value)
     createCitySearchBtn.addEventListener('click', previousCitySearchEventHandler)
