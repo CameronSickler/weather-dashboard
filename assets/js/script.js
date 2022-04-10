@@ -16,6 +16,7 @@ var tempEl = document.getElementById('temp');
 var windEl = document.getElementById('wind');
 var humidityEl = document.getElementById('humidity');
 var uvIndexEl = document.getElementById('uvIndex');
+var listContLiEl = document.getElementById('list-cont');
 
 
 //variables used for dynamically creating elements that
@@ -127,18 +128,31 @@ function clearElements() {
 function citySearchEventHandler(ev) {
     ev.preventDefault();
     clearElements();
+    createLiElement(inputEl.value);
     console.log(ev)
 
     // passes the input value of what is typed in for a city name as parameter
     getLocationData(inputEl.value);
 
-    console.log(inputEl.value)
 
     // add date and time populate to event handler
 
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     cityNameEl.innerText = ("City Details: " + inputEl.value + "  " + today)
+}
+
+function createLiElement() {
+    console.log(inputEl.value);
+    var createLi = document.createElement('li')
+    localStorage.setItem('city', JSON.stringify(inputEl.value))
+    createLi.innerText = inputEl.value;
+    // createLi.setAttribute("id", "inputEl.value")
+    var createCitySearchBtn = document.createElement('button')
+    createCitySearchBtn.innerText = ('search city')
+    createCitySearchBtn.addEventListener('click', citySearchEventHandler)
+    listContLiEl.appendChild(createLi)
+    createLi.appendChild(createCitySearchBtn)
 }
 
 //eventlistener for searching city name on button click
