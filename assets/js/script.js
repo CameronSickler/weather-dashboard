@@ -47,8 +47,6 @@ function getCurrentWeather(lat, lon) {
         })
         .then(function (weatherData) {
 
-            console.log(weatherData)
-
             //local variables to store weather data from API
             var tempInfo = weatherData.current.temp
             var windInfo = weatherData.current.wind_speed
@@ -132,7 +130,6 @@ function citySearchEventHandler(ev) {
     clearElements();
     //function call to create an li and btn element representing the previously searched city name
     createBtnElement(inputEl.value);
-    console.log(ev)
 
     // passes the input value of what is typed in for a city name as parameter
     getLocationData(inputEl.value);
@@ -160,7 +157,10 @@ function previousCitySearchEventHandler(ev) {
 //function to dynamically create elements which is called from within 
 // the previousCitySearchEventHandler function
 function createBtnElement() {
-    console.log(inputEl.value);
+
+    //set the input value which at the time this is ran would be the city name 
+    //that was lasted typed into the search bar before clicking the submit button
+    //and saving that city name to local storage.
     localStorage.setItem('city', JSON.stringify(inputEl.value))
 
     //local variables that create button and li elements
