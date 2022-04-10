@@ -32,4 +32,5 @@ https://cameronsickler.github.io/weather-dashboard/
 
 
 Screenshot finished product
+![weather dashboard photo](https://user-images.githubusercontent.com/98184710/162636270-2bac1149-76b8-4201-bd44-9f05eb9f74fc.jpg)
 
