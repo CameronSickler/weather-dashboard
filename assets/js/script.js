@@ -1,5 +1,7 @@
 //Notes to fellow Developer - Hello! My name is Cameron and thank you 
 //for taking a look at my code! I hope you enjoy it :)
+//Something to note, be sure to capitalize the city names for best search results,
+//not capitalizing proper nouns may result in the UV index value displaying as 0. 
 
 // global variables
 var key = '157060892b19157fb785accbd112cc57'
@@ -126,7 +128,7 @@ function getCurrentWeather(lat, lon) {
                     createUVIndexLi.setAttribute("class", "severe");
                 }
 
-                numberOfDays[i].appendChild(createUVIndexP);
+                numberOfDays[i].appendChild(createUVIndexLi);
 
                 //incrementor for the parent loop
                 index = index + 1
